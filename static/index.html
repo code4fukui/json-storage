@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>json-storage test</title>
+</head><body>
+<h1>json-storage test</h1>
+path <input id=inpath value=testpath1/testpath2/fn1>
+val <input id=inval value=test>
+<button id=btnset>set</button>
+res <input id=inres><br>
+<br>
+path <input id=inpath2 value=testpath1/testpath2/fn1>
+<button id=btnget>get</button>
+res <input id=inres2>
+<script type="module">
+import { fetchJSON } from "https://js.sabae.cc/fetchJSON.js";
+
+btnset.onclick = async () => {
+  inres.value = await fetchJSON("/api/" + inpath.value, inval.value);
+};
+btnget.onclick = async () => {
+  inres2.value = JSON.stringify(await fetchJSON("/api/" + inpath2.value));
+};
+</script>
+
+<hr>
+<a href=https://github.com/code4fukui/json-storage/>src on GitHub</a><br>
+
+</body></html>
