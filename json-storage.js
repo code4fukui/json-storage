@@ -41,7 +41,7 @@ const setJSON = async (fn, obj) => {
 };
 
 serveAPI("/api/", async (param, req, path, conninfo) => {
-  const fn = path.substring("/api/");
+  const fn = path.substring("/api/".length);
   if (param == null) { // get
     return await getJSON(fn);
   } else { // put
