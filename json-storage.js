@@ -24,10 +24,13 @@ const getJSON = async (fn) => {
   if (fn.indexOf("..") >= 0) return null; // err
   if (fn.endsWith("/")) { // all get
     const res = {};
-    for await (const f of Deno.readDir("json/" + fn)) {
-      if (f.isDirectory) continue;
-      const d = await readJSON(fn + "/" + f.name);
-      res[f.name] = d;
+    try {
+      for await (const f of Deno.readDir("json/" + fn)) {
+        if (f.isDirectory) continue;
+        const d = await readJSON(fn + "/" + f.name);
+        res[f.name] = d;
+      }
+    } catch (e) {
     }
     return res;
   }
