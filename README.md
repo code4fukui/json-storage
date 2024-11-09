@@ -21,7 +21,7 @@ const res = JSON.stringify(await fetchJSON("/api/path/file"));
 ## how to start
 
 ```sh
-deno task start 8888
+deno serve --port 8888 --hostname "[::]" -A json-storage.js
 ```
 
 open http://localhost:8888/

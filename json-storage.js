@@ -1,4 +1,4 @@
-import { serveAPI } from "https://js.sabae.cc/wsutil.js";
+import { fetchWeb } from "https://code4fukui.github.io/wsutil/fetchWeb.js";
 
 const readJSON = async (fn) => {
   try {
@@ -43,7 +43,7 @@ const setJSON = async (fn, obj) => {
   return await writeJSON(fn, obj);
 };
 
-serveAPI("/api/", async (param, req, path, conninfo) => {
+export default fetchWeb(async (param, req, path, conninfo) => {
   const fn = path.substring("/api/".length);
   if (param == null) { // get
     return await getJSON(fn);
