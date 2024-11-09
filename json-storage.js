@@ -23,12 +23,13 @@ const writeJSON = async (fn, obj) => {
 const getJSON = async (fn) => {
   if (fn.indexOf("..") >= 0) return null; // err
   if (fn.endsWith("/")) { // all get
-    const res = {};
+    const res = [];
     try {
       for await (const f of Deno.readDir("json/" + fn)) {
         if (f.isDirectory) continue;
         const d = await readJSON(fn + "/" + f.name);
-        res[f.name] = d;
+        d["@id"] = f.name;
+        res.push(d);
       }
     } catch (e) {
     }
