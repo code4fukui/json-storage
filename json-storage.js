@@ -28,10 +28,13 @@ const getJSON = async (fn) => {
       for await (const f of Deno.readDir("json/" + fn)) {
         if (f.isDirectory) continue;
         const d = await readJSON(fn + "/" + f.name);
-        d["@id"] = f.name;
+        if (typeof d == "object" && !Array.isArray(d)) {
+          d["@id"] = f.name;
+        }
         res.push(d);
       }
     } catch (e) {
+      //console.log(e)
     }
     return res;
   }
