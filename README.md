@@ -1,5 +1,7 @@
 # json-storage
 
+json-storage service based on [wsutil](https://github.com/code4fukui/wsutil/)
+
 ## usage
 
 ### set
